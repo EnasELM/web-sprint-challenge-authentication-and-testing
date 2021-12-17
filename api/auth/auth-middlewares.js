@@ -14,7 +14,7 @@ async function checkUsernameFree(req, res, next) {
   }
 
   function checkingUsernameAndPassword(req, res, next) {
-    if (!req.body.password.length || !req.body.username.length) {
+    if (!req.body.password || !req.body.username.length) {
       next({ message: "username and password required", status: 422 });
     } else {
       next();

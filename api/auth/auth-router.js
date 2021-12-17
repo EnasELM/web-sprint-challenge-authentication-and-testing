@@ -37,7 +37,7 @@ router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, re
       User.add({ username, password:hash})
        .then(newUser => {
          res.status(201).json({
-          user_id: newUser.id,
+          id: newUser.id,
           username: newUser.username,
           password: newUser.password,
          })

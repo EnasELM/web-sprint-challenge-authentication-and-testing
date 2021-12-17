@@ -16,7 +16,7 @@ async function checkUsernameFree(req, res, next) {
       } else next({ message: "username taken", status: 422 })
     }
     catch (err) {
-      next(err);
+       next(err);
     }
   }
 
@@ -27,8 +27,9 @@ async function checkUsernameFree(req, res, next) {
         req.user = users[0]
         next()
       } else next({ message: "invalid credentials", status: 401 });
-    } catch (err) {
-      next(err);
+    } 
+    catch (err) {
+       next(err);
     }
   }
 

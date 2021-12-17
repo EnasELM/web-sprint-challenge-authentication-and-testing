@@ -13,7 +13,7 @@ async function checkUsernameFree(req, res, next) {
     }
   }
 
-  function checkPassAndUserHere(req, res, next) {
+  function checkingUsernameAndPassword(req, res, next) {
     if (!req.body.password || !req.body.username) {
       next({ message: "username and password required", status: 422 });
     } else {
@@ -21,7 +21,20 @@ async function checkUsernameFree(req, res, next) {
     }
   }
 
+  async function checkUsernameExists(req, res, next) {
+    try {
+      const users = await User.findBy({ username: req.body.username });
+      if (users.length) {
+        req.user = users[0]
+        next()
+      } else next({ message: "invalid credentials", status: 401 });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   module.exports = {
-    checkPassAndUserHere,
+    checkingUsernameAndPassword,
     checkUsernameFree,
+    checkUsernameExists
   };

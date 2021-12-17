@@ -81,9 +81,9 @@ router.post('/login', checkUsernameExists, checkingUsernameAndPassword, (req, re
 
 function buildToken(user) {
   const payload = {
-    // subject: user.user_id,
-    // role_name: user.role_name,
-    // username: user.username,
+     user_id: user.id,
+     username: user.username,
+     password: user.password,
   };
   const options = {
     expiresIn: "1d",

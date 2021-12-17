@@ -10,7 +10,7 @@ function find() {
 
   function findById(user_id) {
     return db('users')
-    .select('id', 'username')
+    .select('id', 'username','password')
     .where('id',user_id).first()
   }
 

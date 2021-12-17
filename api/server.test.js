@@ -49,13 +49,13 @@ describe('server.js', () => {
     }, 750)
  })
  describe('[GET] /api/jokes', () => {
-  it('[6] requests without a token ', async () => {
-    const res = await request(server).get('/api/jokes')
-    expect(res.body.message).toMatch(/token required/i)
-  }, 750)
-  it('[7] requests with an invalid token ', async () => {
-    const res = await request(server).get('/api/jokes').set('Authorization', 'awad')
-    expect(res.body.message).toMatch(/token invalid/i)
+    it('[6] requests without a token ', async () => {
+     const res = await request(server).get('/api/jokes')
+     expect(res.body.message).toMatch(/token required/i)
+    }, 750)
+    it('[7] requests with an invalid token ', async () => {
+     const res = await request(server).get('/api/jokes').set('Authorization', 'awad')
+     expect(res.body.message).toMatch(/token invalid/i)
   }, 750)
  })
 })

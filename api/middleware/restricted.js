@@ -13,17 +13,17 @@ module.exports = (req, res, next) => {
     3- On invalid or expired token in the Authorization header,
       the response body should include a string exactly as follows: "token invalid".
   */
-      const token = req.headers.authorization 
-      if(!token){
+   const token = req.headers.authorization 
+    if(!token){
         next({ status:401, message: 'token required'})
-      }else {
+    }else {
         jwt.verify(token, JWT_SECRET, (err, decodedToken ) => {
-          if(err){
+        if(err){
            next({ status: 401, message: 'token invalid'})
-          }else {
-      req.decodedToken= decodedToken
-      next()
-          }
+        }else {
+          req.decodedToken= decodedToken
+          next()
+        }
         })
-      }
+    }
 };

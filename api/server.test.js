@@ -42,16 +42,20 @@ describe('server.js', () => {
       let res = await request(server).post('/api/auth/register').send({ password: '1234' })
       expect(res.body.message).toMatch(/username and password required/i)
      }, 750)
-     it('[8] saves the user with a bcrypted', async () => {
+     it('[5] saves the user with a bcrypted', async () => {
       await request(server).post('/api/auth/register').send({ username: 'fafi', password: '1234' })
       const name = await db('users').where('username', 'fafi').first()
       expect(bcrypt.compareSync('1234', name.password)).toBeTruthy()
     }, 750)
  })
  describe('[GET] /api/jokes', () => {
-  it('[17] requests without a token ', async () => {
+  it('[6] requests without a token ', async () => {
     const res = await request(server).get('/api/jokes')
     expect(res.body.message).toMatch(/token required/i)
+  }, 750)
+  it('[7] requests with an invalid token ', async () => {
+    const res = await request(server).get('/api/jokes').set('Authorization', 'awad')
+    expect(res.body.message).toMatch(/token invalid/i)
   }, 750)
  })
 })

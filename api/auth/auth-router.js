@@ -46,7 +46,7 @@ router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, re
     .catch(next) 
 });
 
-router.post('/login', checkUsernameExists, checkingUsernameAndPassword, (req, res, next) => {
+router.post('/login', checkingUsernameAndPassword,checkUsernameExists, (req, res, next) => {
   //res.end('implement login, please!');
   /*
     IMPLEMENT

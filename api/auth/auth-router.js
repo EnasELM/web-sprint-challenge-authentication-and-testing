@@ -5,8 +5,8 @@ const { JWT_SECRET } = require("../secrets");
 const jwt = require("jsonwebtoken");
 const { checkingUsernameAndPassword, checkUsernameFree, checkUsernameExists } = require('./auth-middlewares')
 
-router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, res) => {
-  res.end('implement register, please!');
+router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, res, next) => {
+  //res.end('implement register, please!');
   /*
     IMPLEMENT
     You are welcome to build additional middlewares to help with the endpoint's functionality.
@@ -42,8 +42,8 @@ router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, re
     .catch(next) 
 });
 
-router.post('/login', checkUsernameExists, checkingUsernameAndPassword, (req, res) => {
-  res.end('implement login, please!');
+router.post('/login', checkUsernameExists, checkingUsernameAndPassword, (req, res, next) => {
+  //res.end('implement login, please!');
   /*
     IMPLEMENT
     You are welcome to build additional middlewares to help with the endpoint's functionality.

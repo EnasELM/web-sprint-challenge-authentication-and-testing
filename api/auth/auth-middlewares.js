@@ -14,7 +14,8 @@ async function checkUsernameFree(req, res, next) {
       if (!users.length) {
         next()
       } else next({ message: "username taken", status: 422 })
-    } catch (err) {
+    }
+    catch (err) {
       next(err);
     }
   }

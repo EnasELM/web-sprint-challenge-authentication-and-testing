@@ -43,7 +43,7 @@ router.post('/register',checkingUsernameAndPassword, checkUsernameFree, (req, re
          })
        })
       
-    .catch(next) 
+       .catch(next) 
 });
 
 router.post('/login', checkingUsernameAndPassword,checkUsernameExists, (req, res, next) => {
@@ -77,15 +77,14 @@ router.post('/login', checkingUsernameAndPassword,checkUsernameExists, (req, res
           message: `welcome, ${req.user.username}`,
           token
         })
-        
-       }else {
+   } else {
         next({ message: 'invalid credentials', status: 401 })
-       }      
+      }      
 });
 
 function buildToken(user) {
   const payload = {
-     user_id: user.id,
+     id: user.id,
      username: user.username,
      password: user.password,
   };
